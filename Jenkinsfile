@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/vishvrockz/dotnet-hello-world.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat 'dotnet build'
@@ -29,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the application'
-                // Deployment logic here (e.g., copy files, restart services, etc.)
+                // Add deployment logic here
             }
         }
     }
