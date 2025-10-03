@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        git 'Git'  // Ensure Git is configured in Global Tool Configuration
-        dotnet 'dotnet-sdk'  // Specify the .NET SDK if configured
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -15,32 +10,26 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    bat 'dotnet build'
-                }
+                bat 'dotnet build'
             }
         }
 
         stage('Test') {
             steps {
-                script {
-                    bat 'dotnet test'
-                }
+                bat 'dotnet test'
             }
         }
 
         stage('Publish') {
             steps {
-                script {
-                    bat 'dotnet publish -c Release -o out'
-                }
+                bat 'dotnet publish -c Release -o out'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying the application'
-                // Add any deployment logic here (e.g., copy to IIS, AWS, etc.)
+                // Deployment logic here (e.g., copy files, restart services, etc.)
             }
         }
     }
